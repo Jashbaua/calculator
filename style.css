@@ -40,6 +40,12 @@
     align-content: center;
     font-size:xx-large;
 }
+.input button:hover{
+    filter: brightness(85%);
+}
+.input button:active{
+    filter: brightness(120%);
+}
 #zero{
     width: 200px;
 }
