@@ -27,9 +27,9 @@ function operate(){
 
 let inpBtns=document.querySelectorAll('button')
 inpBtns.forEach((inpBtn)=>{
-    inpBtn.addEventListener('click',doButtonAction)
+    inpBtn.addEventListener('click',doClickAction)
 })
-function doButtonAction(e){
+function doClickAction(e){
     if(e.target.classList.contains('operand')){
         operandClicked(e.target.textContent)
     }
@@ -37,6 +37,24 @@ function doButtonAction(e){
         operatorClicked(e.target)
     }
     else extraClicked(e.target.textContent)
+}
+document.addEventListener('keydown',doKeyAction)
+function doKeyAction(e){
+    if(e.key=='Enter')operatorClicked('=')
+    if('0'<=e.key&&e.key<='9'||e.key=='.'){
+        operandClicked(e.key)
+    }
+    else if(e.key=='+'||e.key=='/'||e.key=='*'||e.key=='-'||e.key=='='){
+        operatorClicked(e.key)
+    }
+    switch(e.key){
+        case 'Delete':extraClicked('AC')
+            break
+        case 'Backspace':extraClicked('Back')
+            break
+        case '%':extraClicked('%')
+    }
+    e.target.blur()
 }
 let operand1DotFlag=false,operand2DotFlag=false
 function operandClicked(operand){
@@ -73,11 +91,11 @@ function operandClicked(operand){
 }
 const disp=document.querySelector('.display')
 function display(displayText){
-    if(!isNaN(Number(displayText)))displayText=Number(displayText)
     disp.textContent=displayText
 }
-function operatorClicked(newOperator){
-    if(newOperator.textContent=="="){
+function operatorClicked(clickedOperator){
+    let newOperator=typeof(clickedOperator)=='string'?clickedOperator:clickedOperator.textContent
+    if(newOperator=="="){
         if(operator!==null){
             let result=makeDisplayable(operate())
             display(result)
@@ -92,22 +110,27 @@ function operatorClicked(newOperator){
     else{
         if(operator===null){
             if(operand1!==null){
-                toggleHighlight(newOperator.textContent)
-                operator=newOperator.textContent
+                toggleHighlight(newOperator)
+                operator=newOperator
+            }
+            else{
+                operand1=0
+                toggleHighlight(newOperator)
+                operator=newOperator
             }
         }
         else{
             if(operand2===null){
                 toggleHighlight(operator)
-                toggleHighlight(newOperator.textContent)
-                operator=newOperator.textContent
+                toggleHighlight(newOperator)
+                operator=newOperator
             }
             else{
                 let result=makeDisplayable(operate())
                 display(result)
                 toggleHighlight(operator)
-                toggleHighlight(newOperator.textContent)
-                operator=newOperator.textContent
+                toggleHighlight(newOperator)
+                operator=newOperator
                 operand1=result
                 operand1DotFlag=result.includes('.')
                 operand2=null
@@ -151,7 +174,10 @@ function extraClicked(clickItem){
             operand2=null
             operand1DotFlag=false
             operand2DotFlag=false
-            operator=null
+            if(operator!==null){
+                toggleHighlight(operator)
+                operator=null
+            }
             display('0')
         case 'Back':goBack()
         break
