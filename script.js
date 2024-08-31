@@ -15,12 +15,13 @@ function divide(num1,num2){
     if(num2==0)return "div by 0"
     return num1/num2
 }
-function operate(operand1,operand2,operator){
+function operate(){
+    let num1=Number(operand1),num2=Number(operand2)
     switch(operator){
-        case '+':return add(operand1,operand2)
-        case '-':return subtract(operand1,operand2)
-        case '*':return multiply(operand1,operand2)
-        case '/':return divide(operand1,operand2)
+        case '+':return add(num1,num2)
+        case '-':return subtract(num1,num2)
+        case '*':return multiply(num1,num2)
+        case '/':return divide(num1,num2)
     }
 }
 
@@ -33,7 +34,7 @@ function doButtonAction(e){
         operandClicked(e.target.textContent)
     }
     else if(e.target.classList.contains('operator')){
-        operatorClicked(e.target.textContent)
+        operatorClicked(e.target)
     }
     else extraClicked(e.target.textContent)
 }
@@ -72,6 +73,53 @@ function operandClicked(operand){
     }
 }
 const disp=document.querySelector('.display')
-function display(operand){
-    disp.textContent=operand
+function display(displayText){
+    disp.textContent=displayText
 }
+function operatorClicked(newOperator){
+    if(newOperator.textContent=="="){
+        if(operator!==null){
+            let result=makeDisplayable(operate())
+            display(result)
+            toggleHighlight(operator)
+            operator=null
+            operand1=result
+            operand2=null
+        }
+    }
+    else{
+        if(operator===null){
+            if(operand1!==null){
+                toggleHighlight(newOperator)
+                operator=newOperator.textContent
+            }
+        }
+        else{
+            if(operand2===null){
+                toggleHighlight(operator)
+                toggleHighlight(newOperator.textContent)
+                operator=newOperator.textContent
+            }
+            else{
+                let result=makeDisplayable(operate())
+                display(result)
+                toggleHighlight(operator)
+                toggleHighlight(newOperator.textContent)
+                operator=newOperator.textContent
+                operand1=result
+                operand2=null
+            }
+        }
+    }
+}
+function makeDisplayable(num){
+    let result=num.toString()
+    let dotIndex=result.indexOf('.')
+    if(dotIndex==-1){
+        return result.length>8?"Exceeds!":result
+    }
+    else{
+        return dotIndex>6?"Exceeds!":+num.toFixed(7-dotIndex)
+    }
+}
+function toggleHighlight(){}
