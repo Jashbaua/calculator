@@ -58,3 +58,9 @@
 .input .operand{
     background-color: #217C7E;
 }
+.highlight{
+    filter:brightness(120%)
+}
+.input .highlight:hover{
+    filter:brightness(120%)
+}

@@ -90,7 +90,7 @@ function operatorClicked(newOperator){
     else{
         if(operator===null){
             if(operand1!==null){
-                toggleHighlight(newOperator)
+                toggleHighlight(newOperator.textContent)
                 operator=newOperator.textContent
             }
         }
@@ -122,4 +122,21 @@ function makeDisplayable(num){
         return dotIndex>6?"Exceeds!":+num.toFixed(7-dotIndex)
     }
 }
-function toggleHighlight(){}
+function toggleHighlight(operator){
+    switch(operator){
+        case '+':
+            operator='add'
+            break
+        case '-':
+            operator='subtract'
+            break
+        case '*':
+            operator='multiply'
+            break
+        case '/':
+            operator='divide'
+            break
+    }
+    let op=document.querySelector('.'+operator)
+    op.classList.toggle('highlight')
+}
