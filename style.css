@@ -49,12 +49,12 @@
 #zero{
     width: 200px;
 }
+.input .operator{
+    background-color: #FF8F1F;
+}
 .input .extra{
     background-color: dodgerblue;
 }
 .input .operand{
     background-color: #217C7E;
-}
-.input .operator{
-    background-color: #FF8F1F;
 }

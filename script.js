@@ -29,5 +29,49 @@ inpBtns.forEach((inpBtn)=>{
     inpBtn.addEventListener('click',doButtonAction)
 })
 function doButtonAction(e){
-    console.log('pressd')
+    if(e.target.classList.contains('operand')){
+        operandClicked(e.target.textContent)
+    }
+    else if(e.target.classList.contains('operator')){
+        operatorClicked(e.target.textContent)
+    }
+    else extraClicked(e.target.textContent)
+}
+let operand1DotFlag=false,operand2DotFlag=false
+function operandClicked(operand){
+    console.log(operand)
+    if(operator===null){
+        if(operand=='.'){
+            if(operand1DotFlag==true)return
+            operand1DotFlag=true 
+        }
+        if(operand1===null){
+            operand1=''+operand
+            display(operand1)
+        }
+        else{
+            if(operand1.length==8)return
+            operand1+=operand
+            display(operand1)
+        }
+    }
+    else{
+        if(operand=='.'){
+            if(operand2DotFlag==true)return
+            operand2DotFlag=true 
+        }
+        if(operand2===null){
+            operand2=''+operand
+            display(operand2)
+        }
+        else{
+            if(operand2.length==8)return
+            operand2+=operand
+            display(operand2)
+        }
+    }
+}
+const disp=document.querySelector('.display')
+function display(operand){
+    disp.textContent=operand
 }
