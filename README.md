@@ -35,7 +35,7 @@ Under the hood:
 ## Demo
 
 To see a live demo, simply open the `index.html` file in your browser:</br>
-git clone https://github.com/your-username/calculator.git</br>
+git clone [https://github.com/your-username/calculator.git](https://github.com/Jashbaua/calculator.git)</br>
 cd calculator</br>
 open index.html</br>
 
