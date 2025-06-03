@@ -1,6 +1,6 @@
 # Calculator
 
-![calculator](https://github.com/user-attachments/assets/273fc6df-60fc-496e-82af-66e3b6a8708d)
+<img src="https://github.com/user-attachments/assets/273fc6df-60fc-496e-82af-66e3b6a8708d" width="300"/>
 
 Live Demo: [Calculator](https://jashbaua.github.io/calculator/)
 
