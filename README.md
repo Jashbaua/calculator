@@ -1,6 +1,6 @@
 # Calculator
 
-https://github.com/user-attachments/assets/4815fd70-4467-4e63-bcdf-d1d29ded7e4a
+![calculator](https://github.com/user-attachments/assets/273fc6df-60fc-496e-82af-66e3b6a8708d)
 Live Demo: [Calculator](https://jashbaua.github.io/calculator/)
 
 A simple on-screen calculator built with HTML, CSS, and JavaScript. This project was created as part of The Odin Project’s Foundations Course. It demonstrates basic arithmetic operations and interactive DOM manipulation without using the `eval()` function.
