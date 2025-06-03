@@ -34,10 +34,10 @@ Under the hood:
 
 ## Demo
 
-To see a live demo, simply open the `index.html` file in your browser:
-git clone https://github.com/your-username/calculator.git
-cd calculator
-open index.html
+To see a live demo, simply open the `index.html` file in your browser:</br>
+git clone https://github.com/your-username/calculator.git</br>
+cd calculator</br>
+open index.html</br>
 
 
 ## Usage
